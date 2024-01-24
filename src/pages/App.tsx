@@ -1,12 +1,14 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setEmail, setPassword, sendRequest, selectAuth } from './slices/AuthSlice';
-import { isEmailValid } from './utils/emailValidation';
-import './App.css';
-import { AppDispatch } from './store';
+import { setEmail, setPassword, sendRequest, selectAuth } from '../slices/AuthSlice';
+import { isEmailValid } from '../utils/emailValidation';
+import '../styles/App.scss';
+import { AppDispatch } from '../store';
+
 
 
 function App() {
+
   const dispatch: AppDispatch = useDispatch();
   const auth = useSelector(selectAuth);
 
