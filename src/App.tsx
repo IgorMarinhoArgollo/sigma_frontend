@@ -1,35 +1,64 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setEmail, setPassword, sendRequest, selectAuth } from './slices/AuthSlice';
+import { isEmailValid } from './utils/emailValidation';
+import './App.css';
+import { AppDispatch } from './store';
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const dispatch: AppDispatch = useDispatch();
+  const auth = useSelector(selectAuth);
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setEmail(e.target.value));
+  };
+
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setPassword(e.target.value));
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (auth.email && isEmailValid(auth.email) && auth.password) {
+      dispatch(sendRequest());
+    }
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <main>
+      <form onSubmit={handleSubmit}>
+        <div className="logo">
+          <div className="vertical"></div>
+          <div className="horizontal"></div>
+        </div>
+
+        <div className="inputs">
+          <label htmlFor="email">
+            Email:
+            <input
+              type="email"
+              value={auth.email || ''}
+              onChange={handleEmailChange}
+            />
+          </label>
+
+          <label htmlFor="password">
+            Password:
+            <input
+              type="password"
+              value={auth.password || ''}
+              onChange={handlePasswordChange}
+            />
+          </label>
+
+          <button type="submit" disabled={!isEmailValid(auth.email || '') || !auth.password}>
+            Send
+          </button>
+        </div>
+      </form>
+    </main>
+  );
 }
 
-export default App
+export default App;
