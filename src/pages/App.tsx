@@ -1,29 +1,25 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setEmail, setPassword, sendRequest, selectAuth } from '../slices/AuthSlice';
-import { isEmailValid } from '../utils/emailValidation';
 import '../styles/App.scss';
-import { AppDispatch } from '../store';
-
-
+import { loginUser, selectAuth, setEmail, setPassword } from '../slices/AuthSlice';
+import { useAppDispatch, useAppSelector } from '../Hooks';
+import { isEmailValid } from '../utils/emailValidation';
 
 function App() {
-
-  const dispatch: AppDispatch = useDispatch();
-  const auth = useSelector(selectAuth);
-
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(setEmail(e.target.value));
-  };
-
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(setPassword(e.target.value));
-  };
+  const dispatch = useAppDispatch();
+  const email = useAppSelector(selectAuth).email;
+  const password = useAppSelector(selectAuth).password;
+  const loading = useAppSelector(selectAuth).loading;
+  const errorMessage = useAppSelector(selectAuth).errorMessage;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (auth.email && isEmailValid(auth.email) && auth.password) {
-      dispatch(sendRequest());
+    if (email && isEmailValid(email) && password) {
+      try {
+        const resultAction = dispatch(loginUser({ email, password }));
+        console.log('Login bem-sucedido. Token:', (await resultAction).payload);
+      } catch (error) {
+        console.error('Erro ao fazer login:', error);
+      }
     }
   };
 
@@ -40,8 +36,10 @@ function App() {
             Email:
             <input
               type="email"
-              value={auth.email || ''}
-              onChange={handleEmailChange}
+              value={email || ''}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                dispatch(setEmail({ email: e.target.value }));
+              }}
             />
           </label>
 
@@ -49,12 +47,16 @@ function App() {
             Password:
             <input
               type="password"
-              value={auth.password || ''}
-              onChange={handlePasswordChange}
+              value={password || ''}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                dispatch(setPassword({ password: e.target.value }));
+              }}
             />
           </label>
-
-          <button type="submit" disabled={!isEmailValid(auth.email || '') || !auth.password}>
+          {errorMessage && <div>{errorMessage}</div>}
+          {loading && <div>Loading...</div>}
+          
+          <button type="submit" disabled={!isEmailValid(email || '') || !password}>
             Send
           </button>
         </div>

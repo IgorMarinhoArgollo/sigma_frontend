@@ -6,8 +6,6 @@ import { store } from './store';
 import { BrowserRouter } from 'react-router-dom';
 import Routes from './Routes.tsx';
 
-
-
 const root = ReactDOM.createRoot(document.getElementById('root')!);
 
 root.render(
