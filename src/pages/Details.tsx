@@ -1,4 +1,3 @@
-import React from 'react'
 import '../styles/Details.scss';
 import { useAppSelector } from '../Hooks';
 import { selectAuth } from '../slices/AuthSlice';
