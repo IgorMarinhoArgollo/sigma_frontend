@@ -16,6 +16,15 @@ main {
     border: solid 2px blue;
     border-radius: 30px;
 
+    label {
+      margin-left: 25px;
+      p {
+        font-weight: bold;
+      }
+      input {
+        margin-bottom: 15px;
+      }
 
+    }
   }
 }

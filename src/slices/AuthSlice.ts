@@ -173,7 +173,7 @@ export const authSlice = createSlice({
       if (action.payload instanceof Error) {
         state.errorMessage = action.payload.message;
       } else {
-        state.errorMessage = 'Unable to get your data';
+        state.errorMessage = 'Please verify your password and email';
       }
     });
   },

@@ -83,10 +83,13 @@ main form .inputs label {
 main form .inputs .error {
   color: red;
   font-weight: bold;
+  max-width: 145;
 }
 main form .inputs .loading {
   -webkit-animation: loading 2s linear infinite;
           animation: loading 2s linear infinite;
+  font-weight: bold;
+  max-width: 145px;
 }
 
 @-webkit-keyframes loading {
@@ -95,8 +98,8 @@ main form .inputs .loading {
             transform: translateX(0);
   }
   50% {
-    -webkit-transform: translateX(70px);
-            transform: translateX(70px);
+    -webkit-transform: translateX(40px);
+            transform: translateX(40px);
   }
   100% {
     -webkit-transform: translateX(0);
@@ -110,8 +113,8 @@ main form .inputs .loading {
             transform: translateX(0);
   }
   50% {
-    -webkit-transform: translateX(70px);
-            transform: translateX(70px);
+    -webkit-transform: translateX(40px);
+            transform: translateX(40px);
   }
   100% {
     -webkit-transform: translateX(0);

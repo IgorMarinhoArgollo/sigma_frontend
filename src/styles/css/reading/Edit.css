@@ -31,4 +31,13 @@ main .box {
           justify-content: center;
   border: solid 2px blue;
   border-radius: 30px;
+}
+main .box label {
+  margin-left: 25px;
+}
+main .box label p {
+  font-weight: bold;
+}
+main .box label input {
+  margin-bottom: 15px;
 }/*# sourceMappingURL=Edit.css.map */

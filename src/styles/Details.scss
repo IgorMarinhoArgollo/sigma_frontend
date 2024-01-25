@@ -17,15 +17,16 @@ main {
     border-radius: 30px;
 
     h3 {
-      margin: 0 15px;
+      margin: 10px 15px;
     }
 
     button {
-      font-size: 18px;
       margin: 60px auto 0;
       width: 150px;
-      height: 30px;
+      height: 35px;
       bottom: 50px;
+      background-color: rgb(76, 76, 196);
+      border-radius: 10px;
     }
   }
 }

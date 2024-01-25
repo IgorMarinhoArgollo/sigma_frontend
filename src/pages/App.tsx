@@ -13,6 +13,7 @@ function App() {
   const loading = useAppSelector(selectAuth).loading;
   const loadingUser = useAppSelector(selectAuth).loadingUser;
   const errorMessage = useAppSelector(selectAuth).errorMessage;
+  const receivedEmail = useAppSelector(selectAuth).userData.user.email;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -28,7 +29,9 @@ function App() {
         await dispatch(fetchUserData(token as string));
 
         console.log('Login bem-sucedido. Token:', token);
-        navigate('/details');
+        if (!errorMessage && receivedEmail) {
+          navigate('/details');
+        }
       } catch (error) {
         console.error('Erro ao fazer login:', error);
       }

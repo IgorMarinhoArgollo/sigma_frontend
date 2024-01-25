@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../Hooks';
 import { selectAuth, setEditUser, setUserData, updateUserProfile } from '../slices/AuthSlice';
+import '../styles/Edit.scss';
 
 function Edit() {
   const navigate = useNavigate();
@@ -56,8 +57,10 @@ function Edit() {
     <main>
       <h2>Edit</h2>
       <div className="box">
-        <label htmlFor="firstname">
+        <label className="label" htmlFor="firstname">
+          <p>
           firstname:
+          </p>
           <input
             type="text"
             id="firstname"
@@ -65,8 +68,10 @@ function Edit() {
             onChange={(e) => setFirstname(e.target.value)}
           />
         </label>
-        <label htmlFor="lastname">
+        <label className="label" htmlFor="lastname">
+          <p>
           lastname:
+          </p>
           <input
             type="text"
             id="lastname"
@@ -74,8 +79,8 @@ function Edit() {
             onChange={(e) => setLastname(e.target.value)}
           />
         </label>
-        <label htmlFor="email">
-          email:
+        <label className="label" htmlFor="email">
+          <p>email:</p>
           <input
             type="text"
             id="email"

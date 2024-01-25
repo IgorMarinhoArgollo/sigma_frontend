@@ -56,11 +56,14 @@ main {
 
       .error {
         color: red;
-        font-weight:bold
+        font-weight:bold;
+        max-width:145;
       }
 
       .loading {
         animation: loading 2s linear infinite;
+        font-weight: bold;
+        max-width: 145px;
       }
     }
   }
@@ -71,7 +74,7 @@ main {
     transform: translateX(0);
   }
   50% {
-    transform: translateX(70px);
+    transform: translateX(40px);
   }
   100% {
     transform: translateX(0);
