@@ -1,0 +1,21 @@
+main {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+
+  .box {
+    width: 300px;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: solid 2px blue;
+    border-radius: 30px;
+
+
+  }
+}

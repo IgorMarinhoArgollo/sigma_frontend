@@ -13,6 +13,7 @@ main {
     align-items: center;
     justify-content: center;
     border: solid 2px blue;
+    border-radius: 30px;
 
     .logo {
       width: 150px;
@@ -23,6 +24,7 @@ main {
       position: relative;
       border: solid 1px blue;
       margin-bottom: 50px;
+      margin-top: 15px;
 
       .vertical {
         width: 40px;
@@ -51,6 +53,28 @@ main {
         flex-direction: column;
         margin-bottom: 15px;
       }
+
+      .error {
+        color: red;
+        font-weight:bold
+      }
+
+      .loading {
+        animation: loading 2s linear infinite;
+      }
     }
   }
+}
+
+@keyframes loading {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(70px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+  
 }
